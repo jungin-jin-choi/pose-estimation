@@ -7,7 +7,7 @@
 
 ## 1. Introduction to Pose Estimation
 
-```Pose Estimation```은 Computer Vision의 한 분야로, 사물의 position과 orientation을 detect하고자 하는 분야이다. 소위 ```Keypoint detection```라고 불리는데, 사물을 특징지을 수 있는 'keypoint' location을 detect하고자 하기 때문이다.
+```Pose Estimation```은 Computer Vision의 한 분야로, 사물의 position과 orientation을 detect하고자 하는 분야이다. 소위 ```Keypoint detection```라고 불리는데, 사물을 특징지을 수 있는 'keypoint'의 위치를 detect하고자 하기 때문이다.
 
 예를 들어, ```Face Pose Estimation```(a.k.a. ```Facial Landmark Detection```) 문제의 경우, 인간의 얼굴에 존재하는 특징점들을 detect하고자 한다. 이에 관한 자세한 사항은 [Facemark : Facial Landmark Detection using OpenCV](https://www.learnopencv.com/facemark-facial-landmark-detection-using-opencv/) 및 [Facial Landmark Detection using Dlib](https://www.learnopencv.com/facial-landmark-detection/)글을 참고하길 바란다.
 
@@ -17,8 +17,8 @@
 
 Tony Stark가 아이언맨 슈트를 입는 장면을 떠올려보자. 만약 아이언맨 슈트가 상용화된다면, ```Human Pose Estimation``` 분야의 연구가 반드시 필요할 것이다!
 
-<img src="img/OpenPose1.jpg" width="300">
-<p style="text-align: center;">Figure 1 : Sample Skeleton output of pose estimation</p>
+<p align="center"><img src="img/OpenPose1.jpg" width="300"></p>
+<p align="center">Figure 1 : Sample Skeleton output of pose estimation</p>
 
 Pose detector의 일반적인 output은 위와 같이 나타난다. 이제 본격적으로 데이터셋, 아키텍쳐 및 코드를 분석해보자.
 
@@ -26,8 +26,8 @@ Pose detector의 일반적인 output은 위와 같이 나타난다. 이제 본�
 
 본 튜토리얼에서는 CMU Perceptual Computing Lab에서 제안한 [Multi-Person Pose Estimation](https://arxiv.org/pdf/1611.08050.pdf) 모델을 활용하고자 한다. 
 
-<img src="img/OpenPose2.jpg">
-<p style="text-align: center;">Figure 2: Multi-Person Pose Estimation model architecture</p>
+<p align="center"><img src="img/OpenPose2.jpg"></p>
+<p align="center">Figure 2: Multi-Person Pose Estimation model architecture</p>
 
 ## 2.1. Multi-Person Pose Estimation Model Overview
 
@@ -50,13 +50,13 @@ VGGNet의 첫 10개 레이어를 활용하여, input 이미지의 feature map을
 #### Stage 2) Part Confidence Maps, Part Affinity Fields 출력
 본 multi-stage CNN은 두 개의 branch로 구성되어 있다. 첫번째 branch는 Part Confidence Maps를 출력하고, 두번째 branch는 Part Affinity Fields를 출력해낸다.
 
-<img src="img/OpenPose3.jpg">
-<p style="text-align: center;">Figure 3 : Showing confidence maps for Left Shoulder for the given image</p>
+<p align="center"><img src="img/OpenPose3.jpg"></p>
+<p align="center">Figure 3 : Showing confidence maps for Left Shoulder for the given image</p>
 
 첫번째 branch는 특정 신체 부위 keypoint에 대한 2D confidence maps를 출력한다. 쉽게 말해서 무릎이나 팔꿈치와 같은 관절이 있을 것으로 예상되는 위치를 히트맵으로 나타낸 것이다. 위 그림(Figure 3)은 왼쪽 어깨 keypoint에 대한 confidence map을 나타낸다.
 
-<img src="img/OpenPose4.jpg">
-<p style="text-align: center;">Figure 4 : Showing Part Affinity maps for Neck – Left Shoulder pair for the given image</p>
+<p align="center"><img src="img/OpenPose4.jpg"></p>
+<p align="center">Figure 4 : Showing Part Affinity maps for Neck – Left Shoulder pair for the given image</p>
 
 두번째 branch는 특정 관절로부터 다른 관절로 이어지는 것을 2D 벡터맵으로 나타낸다. 이를 Affinity Fields라고 부르는 이유는, 특정 관절들의 'affinity'를 벡터맵으로 나타내기 때문이다. 이를테면, 사람의 목 - 어깨 - 팔꿈치 는 서로 연결되어있기 때문에, 이를 잘 인식했을 경우 1에 가까운 숫자들이 벡터맵에 채워질 것이다. 반면, 서로 다른 사람의 어깨와 팔꿈치의 경우 0에 가까운 숫자들이 채워질 것이다. 위 그림(Figure 4)은 목과 왼쪽 어깨의 affinity를 나타내고 있다. 
 
@@ -72,8 +72,8 @@ Stage 2에서 얻어진 관절 keypoints는 말 그대로 전체 이미지 상 �
 * MPII Human Pose Dataset
 * VGG Pose Dataset
 
-<img src="img/OpenPose5.jpg">
-<p style="text-align: center;">Figure 5 : COCO Keypoints and MPII Keypoints</p>
+<p align="center"><img src="img/OpenPose5.jpg"></p>
+<p align="center">Figure 5 : COCO Keypoints and MPII Keypoints</p>
 
 [Realtime Multi-Person 2D Pose Estimation using Part Affinity Field](https://arxiv.org/abs/1611.08050)논문에서는 COCO와 MPII의 두 가지 데이터셋을 활용한다. COCO 데이터셋으로 학습한 모델의 경우 18개의 keypoints를, MPII 데이터셋으로 학습한 모델의 경우 15개의 keypoints를 출력한다. 위 사진은 각 모델에서의 출력된 결과물을 나타낸다. 자세한 output 포맷은 아래와 같다.
 
@@ -94,9 +94,9 @@ Left Ankle – 13, Chest – 14, Background – 15
 ```
 모델의 학습된 weight들은 [이곳](https://github.com/CMU-Perceptual-Computing-Lab/openpose/tree/master/models)에서 다운받을 수 있다. 
 
-## 3. Code for Human Pose Estimation in OpenCV
+## 3. Code for Single Human Pose Estimation in OpenCV
 
-일단은 Single Person Pose Estimation부터 시작하자. Multi Person Pose Estimation 구현에 관해서는 차후 작성하도록 하겠다.
+일단은 Single Person Pose Estimation부터 시작하자.
 
 ## 3.1. Step 1 : Download Model Weights
 
@@ -132,12 +132,6 @@ ls
 Step 2, Step 3, Step 4의 자세한 설명은 Korean_Tutorial_OpenPose.ipynb에서 볼 수 있다.
 본 README.md에서는 코드의 큰 흐름만을 짚고 넘어갈 것이다.
 
-## 3.3. Step 3: Read Image and Prepare Input to the Network
-
-## 3.4. Step 4: Make Predictions and Parse Keypoints
-
-## 3.5. Step 5: Draw Skeleton
-
 정리하자면, 현재 디렉토리 내에 아래와 같은 파일 및 디렉토리들이 존재해야 한다.
 ```
 CMakeLists.txt
@@ -159,3 +153,38 @@ single.jpeg
 ```
 face, hand, pose 디렉토리 내에 caffemodel들이 있어야 하고,
 현재 디렉토리에서 Korean_Tutorial_OpenPose.ipynb를 열고 실행시키면 된다. 
+
+## 3.3. Step 3: Read Image and Prepare Input to the Network
+
+## 3.4. Step 4: Make Predictions and Parse Keypoints
+
+## 3.5. Step 5: Draw Skeleton
+
+## 4. Code for Multi Human Pose Estimation in OpenCV
+
+이제 Multi Person Pose Estimation이다.
+
+## 4.1. Step 1 : Download Model Weights
+
+## 4.2. Step 2: Generate output from image
+
+### 4.2.1. Load Network
+
+### 4.2.2. Load Image and create input blob
+
+### 4.2.3. Forward pass through the Net
+
+### 4.2.4. Sample Output
+
+## 4.3. Step 3: Detection of keypoints
+
+## 4.4. Step 4 : Find Valid Pairs
+
+## 4.5. Step 5 : Assemble Person-wise Keypoints
+
+## 5. Results
+
+
+```
+맨 위에 목차 넣고, id 할당해서 내부링크 만들어놓자
+```
