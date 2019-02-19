@@ -1,8 +1,3 @@
-# !/usr/bin/env python3
-# coding=utf-8
-# author=dave.fang@outlook.com
-# create=20171225
-
 import cv2
 import math
 import torch
