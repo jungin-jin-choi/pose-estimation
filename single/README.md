@@ -34,7 +34,7 @@ ls
 이제 Jupyter Notebook에서 본 repository 상의 Korean_Tutorial_OpenPose.ipynb 파일을 열자.
 해당 파일의 영문 원본은 learnopencv/OpenPose/OpenPose_Notebook.ipynb이다.
 
-Step 2, Step 3, Step 4의 자세한 설명은 Korean_Tutorial_OpenPose.ipynb에서 볼 수 있다.
+Step 2, Step 3, Step 4의 자세한 설명은 Single_Tutorial_Korean.ipynb에서 볼 수 있다.
 본 README.md에서는 코드의 큰 흐름만을 짚고 넘어갈 것이다.
 
 정리하자면, 현재 디렉토리 내에 아래와 같은 파일 및 디렉토리들이 존재해야 한다.
@@ -44,7 +44,7 @@ face
 getModels.sh
 hand
 img
-Korean_Tutorial_OpenPose.ipynb
+Single_Tutorial_Korean.ipynb
 learnopencv
 multiple.jpeg
 OpenPoseImage.cpp
@@ -57,7 +57,7 @@ sample_video.mp4
 single.jpeg
 ```
 face, hand, pose 디렉토리 내에 caffemodel들이 있어야 하고,
-현재 디렉토리에서 Korean_Tutorial_OpenPose.ipynb를 열고 실행시키면 된다. 
+현재 디렉토리에서 Single_Tutorial_Korean.ipynb를 열고 실행시키면 된다. 
 
 ## 3.3. Step 3: Read Image and Prepare Input to the Network
 
